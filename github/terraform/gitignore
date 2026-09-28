@@ -1,0 +1,8 @@
+**/.terraform
+**/tfplan
+**/plan_output.txt
+**/.DS_Store
+**/build/
+
+# Provider lock files belong in environment roots, not reusable modules
+modules/**/.terraform.lock.hcl
