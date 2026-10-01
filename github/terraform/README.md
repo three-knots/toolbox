@@ -16,6 +16,11 @@ Each PR gets one plan summary comment per environment. It's updated in place on 
 - **Prod applies on merge with no manual approval step.** To add one, create a GitHub Environment named `prod` with required reviewers and add `environment: ${{ inputs.environment }}` to the apply job. Required reviewers on private repos need a GitHub Team or Enterprise plan.
 - **The apply job re-plans instead of applying the plan that was reviewed.** If anything changes between the plan and the apply, the apply includes it.
 
+## Prerequisites
+
+- The repo is set up with the [GitHub repo bootstrap](../README.md), or you have `REPO` and `TOOLBOX` set as described in its [Prerequisites](../README.md#prerequisites). The commands below use both.
+- The [AWS setup](#aws-setup-per-environment) below already exists for each environment.
+
 ## Files
 
 Copy these into the new repo:

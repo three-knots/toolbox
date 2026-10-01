@@ -6,13 +6,15 @@ Captured from `Skylight-Health/dtc_ads` on 2026-09-28. Where this kit differs fr
 
 ## What's in here
 
-| File | What it is |
-| --- | --- |
-| [repo-settings.json](repo-settings.json) | General repo settings: features, merge buttons, auto-delete branches. |
-| [actions-workflow-permissions.json](actions-workflow-permissions.json) | Default `GITHUB_TOKEN` permissions for Actions (read-only, can't approve PRs). |
-| [protect-main.json](protect-main.json) | Ruleset that protects the default branch. |
-| [CODEOWNERS](CODEOWNERS) | Starter `.github/CODEOWNERS`. Required by the ruleset. |
-| [terraform/](terraform/) | Optional. GitHub Actions workflows that plan and apply Terraform to dev/prod through AWS OIDC. |
+| File | What it is | Where it goes |
+| --- | --- | --- |
+| [repo-settings.json](repo-settings.json) | General repo settings: features, merge buttons, auto-delete branches. | Sent to the GitHub API in [step 1](#1-apply-repo-settings). Not committed. |
+| [actions-workflow-permissions.json](actions-workflow-permissions.json) | Default `GITHUB_TOKEN` permissions for Actions (read-only, can't approve PRs). | Sent to the GitHub API in [step 1](#1-apply-repo-settings). Not committed. |
+| [protect-main.json](protect-main.json) | Ruleset that protects the default branch. | Sent to the GitHub API in [step 3](#3-protect-main). Not committed. |
+| [CODEOWNERS](CODEOWNERS) | Starter CODEOWNERS file. Required by the ruleset. | `.github/CODEOWNERS` in the new repo. |
+| [terraform/](terraform/) | Optional. GitHub Actions workflows that plan and apply Terraform to dev/prod through AWS OIDC. | See [terraform/README.md](terraform/README.md). |
+
+To change a setting, edit the JSON before you run the step. The field names match the GitHub REST API docs for [updating a repo](https://docs.github.com/en/rest/repos/repos#update-a-repository) and [creating a ruleset](https://docs.github.com/en/rest/repos/rules#create-a-repository-ruleset).
 
 ## Prerequisites
 

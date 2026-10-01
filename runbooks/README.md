@@ -10,6 +10,13 @@ A starting kit for writing runbooks: the approach, a landing page, a template, a
 | [template.md](template.md) | Blank runbook with guidance under each heading. | Copy it for each new runbook. Delete the guidance notes (the `>` quotes) as you fill it in. |
 | [example.md](example.md) | A filled-in runbook for a database storage alert. | Read it before writing your first runbook. Don't copy it. |
 
+## Getting started
+
+1. Read [example.md](example.md) to see what a finished runbook looks like.
+2. Copy [documentation.md](documentation.md) into your wiki as the parent page for runbooks. Adjust the priority levels and response times to fit your team.
+3. For each alert that pages a human, copy [template.md](template.md) into a child page. Title it with the alert's exact name, and link the alert to the page.
+4. Have someone unfamiliar with the system review it and dry-run it before you publish.
+
 ## The approach in brief
 
 1. **One alert, one runbook.** Every alert that notifies a human links directly to its runbook. If an alert has nothing for a human to do, fix or delete the alert instead of writing a runbook for it.
