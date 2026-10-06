@@ -1,0 +1,5 @@
+# Copy to .github/CODEOWNERS in the new repo.
+# Required because protect-main.json sets require_code_owner_review: true.
+# Later lines take precedence over earlier ones.
+
+*    @<org>/<team>

@@ -1,0 +1,37 @@
+name: "Terraform: Pull Request"
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  id-token: write # OIDC token for AWS
+  contents: read
+  pull-requests: write # plan summary comment
+
+jobs:
+  plan-dev:
+    uses: ./.github/workflows/_terraform-plan.yml
+    with:
+      environment: dev
+    secrets: inherit
+
+  plan-prod:
+    uses: ./.github/workflows/_terraform-plan.yml
+    with:
+      environment: prod
+    secrets: inherit
+
+  # Dev is applied from the PR branch so changes can be tested before merge.
+  # Delete this job if dev should only change on merge.
+  apply-dev:
+    needs: [plan-dev, plan-prod]
+    uses: ./.github/workflows/_terraform-apply.yml
+    with:
+      environment: dev
+    secrets: inherit

@@ -1,0 +1,37 @@
+name: "Terraform: Merge to Main"
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write # OIDC token for AWS
+  contents: read
+
+jobs:
+  plan-dev:
+    uses: ./.github/workflows/_terraform-plan.yml
+    with:
+      environment: dev
+    secrets: inherit
+
+  plan-prod:
+    uses: ./.github/workflows/_terraform-plan.yml
+    with:
+      environment: prod
+    secrets: inherit
+
+  apply-dev:
+    needs: [plan-dev, plan-prod]
+    uses: ./.github/workflows/_terraform-apply.yml
+    with:
+      environment: dev
+    secrets: inherit
+
+  apply-prod:
+    needs: [apply-dev, plan-prod]
+    uses: ./.github/workflows/_terraform-apply.yml
+    with:
+      environment: prod
+    secrets: inherit
